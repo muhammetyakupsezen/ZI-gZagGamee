@@ -13,6 +13,13 @@ public class PlayerController : MonoBehaviour
 
     public SpawnerGround groundSpawner;
 
+    public static bool isDead = false;
+
+
+
+
+   
+
     //SpawnerGround groundSpawner;
     //private void Awake()
     //{
@@ -21,6 +28,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isDead == true )
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             if (yon.x ==0 ) //z ekseninde hareket ediyor, obje z ekseninde gidiyorsa x'i sıfırdır
@@ -32,6 +44,15 @@ public class PlayerController : MonoBehaviour
                 yon = Vector3.back;
             }
         }
+
+        if (transform.position.y < 0.2f)
+        {
+            isDead = true;
+            Debug.Log("öldüm");
+            Destroy(this.gameObject, 0.3f);
+        }
+
+       
     }
 
 
@@ -45,16 +66,21 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Zemin"))
         {
-            YokEt(collision.gameObject); //zemin oluştuktan sonra yok ettik oyuncu zemini terkedince
+            // YokEt(collision.gameObject); //zemin oluştuktan sonra yok ettik oyuncu zemini terkedince
+            StartCoroutine(YokEt(collision.gameObject));
             groundSpawner.ZeminOlustur(); //ground spawnera eriştik o scripte sonrasında zemin oluştur metodunu çağırdık zemin oluşturuyor rastgele
         }
     }
 
 
-    void YokEt(GameObject zemin)
+    IEnumerator YokEt(GameObject zemin)
     {
-        Destroy(zemin);
+        // Destroy(zemin);
+        yield return new WaitForSeconds(0.2f);
+        zemin.AddComponent<Rigidbody>();
 
+        yield return new WaitForSeconds(0.4f);
+        Destroy(zemin);
     }
 
 }//class
