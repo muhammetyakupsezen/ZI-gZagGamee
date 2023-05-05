@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,7 +19,12 @@ public class PlayerController : MonoBehaviour
     public float hizlanmaZorlugu;
 
 
-   
+    float score = 0f;
+    float artisMiktari=1f;
+
+
+    [SerializeField]
+    Text scoreText;
 
     //SpawnerGround groundSpawner;
     //private void Awake()
@@ -51,16 +57,18 @@ public class PlayerController : MonoBehaviour
             Debug.Log("öldüm");
             Destroy(this.gameObject, 0.8f);
         }
-
-       
     }
 
 
     private void FixedUpdate()
-    {
+    { 
         Vector3 hareket = yon * speed * Time.deltaTime;
         speed += Time.deltaTime*hizlanmaZorlugu;
         transform.position += hareket;
+
+        score += artisMiktari * speed * Time.deltaTime;
+        scoreText.text = "Score : "+ ((int)score).ToString();
+
     }
 
     private void OnCollisionExit(Collision collision)
