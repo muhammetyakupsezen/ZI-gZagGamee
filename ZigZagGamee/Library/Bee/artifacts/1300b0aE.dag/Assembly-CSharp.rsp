@@ -356,6 +356,7 @@
 "Assets/Scripts/ChangeColor.cs"
 "Assets/Scripts/FollowCamera.cs"
 "Assets/Scripts/PlayerController.cs"
+"Assets/Scripts/RestartGame.cs"
 "Assets/Scripts/SpawnerGround.cs"
 -langversion:9.0
 
