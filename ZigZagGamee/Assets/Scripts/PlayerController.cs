@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         speed += Time.deltaTime*hizlanmaZorlugu;
         transform.position += hareket;
 
-        score += artisMiktari * speed * Time.deltaTime;
+        score += artisMiktari * speed * Time.deltaTime;   
         scoreText.text = "Score : "+ ((int)score).ToString();
 
     }
