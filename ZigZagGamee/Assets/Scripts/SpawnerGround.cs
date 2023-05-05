@@ -23,8 +23,18 @@ public class SpawnerGround : MonoBehaviour
 
     void ZeminOlustur()
     {
+        Vector3 yon;
 
-        sonZemin = Instantiate(sonZemin, sonZemin.transform.position + Vector3.left, sonZemin.transform.rotation);
+        if (Random.Range(0,2)==0)
+        {
+            yon = Vector3.left;
+        }
+        else
+        {
+            yon = Vector3.back;
+        }
+
+        sonZemin = Instantiate(sonZemin, sonZemin.transform.position + yon, sonZemin.transform.rotation);
     }
 
 }
