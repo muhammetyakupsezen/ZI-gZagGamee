@@ -252,9 +252,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1559016844}
-        m_TargetAssemblyTypeName: RestartGame, Assembly-CSharp
-        m_MethodName: restartGame
+      - m_Target: {fileID: 303722850}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
