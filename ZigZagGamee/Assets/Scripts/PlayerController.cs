@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     float speed;
+    int bestScore = 0;
 
 
     public SpawnerGround groundSpawner;
@@ -24,13 +25,19 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField]
-    Text scoreText;
+    Text scoreText,bestScoreText;
 
     //SpawnerGround groundSpawner;
     //private void Awake()
     //{
     //    groundSpawner = GetComponentInChildren<SpawnerGround>();
     //}
+
+    private void Start()
+    {
+        bestScore = PlayerPrefs.GetInt("BestScore");
+        bestScoreText.text = "Best: " + bestScore;
+    }
 
     private void Update()
     {
@@ -53,15 +60,25 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y < 0.4f)
         {
-            isDead = true; 
+            isDead = true;
+            if (bestScore <score)
+            {
+                bestScore = (int)score;
+                PlayerPrefs.SetInt("BestScore", bestScore);
+            }
             Debug.Log("öldüm");
-            Destroy(this.gameObject, 0.8f);
+            Destroy(this.gameObject, 3f);
         }
     }
 
 
     private void FixedUpdate()
-    { 
+    {
+        if (isDead)
+        {
+            return;
+        }
+
         Vector3 hareket = yon * speed * Time.deltaTime;
         speed += Time.deltaTime*hizlanmaZorlugu;
         transform.position += hareket;
