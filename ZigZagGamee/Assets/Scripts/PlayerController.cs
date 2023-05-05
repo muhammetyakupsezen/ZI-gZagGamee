@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public static bool isDead = false;
 
-
+    public float hizlanmaZorlugu;
 
 
    
@@ -45,11 +45,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (transform.position.y < 0.2f)
+        if (transform.position.y < 0.4f)
         {
-            isDead = true;
+            isDead = true; 
             Debug.Log("öldüm");
-            Destroy(this.gameObject, 0.3f);
+            Destroy(this.gameObject, 0.8f);
         }
 
        
@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 hareket = yon * speed * Time.deltaTime;
+        speed += Time.deltaTime*hizlanmaZorlugu;
         transform.position += hareket;
     }
 
