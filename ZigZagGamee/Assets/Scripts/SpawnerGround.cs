@@ -21,7 +21,7 @@ public class SpawnerGround : MonoBehaviour
         
     }
 
-    void ZeminOlustur()
+   public void ZeminOlustur()
     {
         Vector3 yon;
 

@@ -11,6 +11,14 @@ public class PlayerController : MonoBehaviour
     float speed;
 
 
+    public SpawnerGround groundSpawner;
+
+    //SpawnerGround groundSpawner;
+    //private void Awake()
+    //{
+    //    groundSpawner = GetComponentInChildren<SpawnerGround>();
+    //}
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -33,7 +41,20 @@ public class PlayerController : MonoBehaviour
         transform.position += hareket;
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Zemin"))
+        {
+            YokEt(collision.gameObject);
+            groundSpawner.ZeminOlustur();
+        }
+    }
 
 
+    void YokEt(GameObject zemin)
+    {
+        Destroy(zemin);
+
+    }
 
 }//class
