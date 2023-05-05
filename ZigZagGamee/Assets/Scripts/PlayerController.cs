@@ -45,8 +45,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Zemin"))
         {
-            YokEt(collision.gameObject);
-            groundSpawner.ZeminOlustur();
+            YokEt(collision.gameObject); //zemin oluştuktan sonra yok ettik oyuncu zemini terkedince
+            groundSpawner.ZeminOlustur(); //ground spawnera eriştik o scripte sonrasında zemin oluştur metodunu çağırdık zemin oluşturuyor rastgele
         }
     }
 
