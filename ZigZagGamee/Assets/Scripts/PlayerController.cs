@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Public Variable")]
     public SpawnerGround groundSpawner;
-    public static bool isDead = false;
+    public static bool isDead = true;
     public float hizlanmaZorlugu;
 
     
@@ -33,6 +33,12 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        if (RestartGame.isRestart)
+        {
+            isDead = false;
+            playGamePanel.SetActive(false);
+        }
+
         bestScore = PlayerPrefs.GetInt("BestScore");
         bestScoreText.text = "Best: " + bestScore;
     }
@@ -65,6 +71,7 @@ public class PlayerController : MonoBehaviour
                 PlayerPrefs.SetInt("BestScore", bestScore);
             }
             Debug.Log("öldüm");
+            restartPanel.SetActive(true);
             Destroy(this.gameObject, 3f);
         }
     }
@@ -106,5 +113,14 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         Destroy(zemin);
     }
+
+
+    public void PlayGame()
+    {
+        isDead = false;
+        playGamePanel.SetActive(false);
+    }
+
+
 
 }//class

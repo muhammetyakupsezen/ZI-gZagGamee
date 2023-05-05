@@ -12,6 +12,7 @@ public class RestartGame : MonoBehaviour
     {
 
         isRestart = true;
+       // PlayerController.isDead = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
